@@ -32,6 +32,7 @@ jobs:
         override: true
 
     - name: Build and Test
+      working-directory: ${{ matrix.project }}
       run: |
         cd ${{ matrix.project }}
         cargo build --verbose
@@ -39,19 +40,18 @@ jobs:
 
     - name: Run rust-tarpaulin
       uses: actions-rs/tarpaulin@v0.1.0
-      run: |
-        cd ${{ matrix.project }}
+      working-directory: ${{ matrix.project }}
 
-    - name: Publish Coverage Report to Codecov
-      uses: codecov/codecov-action@v1.0.2
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+    # - name: Publish Coverage Report to Codecov
+    #   uses: codecov/codecov-action@v1.0.2
+    #   with:
+    #     token: ${{ secrets.CODECOV_TOKEN }}
 
-    - name: Archive code coverage results
-      uses: actions/upload-artifact@v2
-      with:
-        name: code-coverage-report
-        path: ${{ matrix.project }}/cobertura.xml
+    # - name: Archive code coverage results
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: code-coverage-report
+    #     path: ${{ matrix.project }}/cobertura.xml
 
 
 # name: Rust
