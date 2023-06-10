@@ -31,11 +31,15 @@ jobs:
         toolchain: stable
         override: true
 
-    - name: Run cargo-tarpaulin
-      uses: actions-rs/tarpaulin@v0.1
-      with:
-        version: '0.15.0'
-        args: '-- --test-threads 1'
+    - name: rust-tarpaulin
+      uses: actions-rs/tarpaulin@v0.1.0
+
+
+    # - name: Run cargo-tarpaulin 0.15.0 1-trhreads
+    #   uses: actions-rs/tarpaulin@v0.1
+    #   with:
+    #     version: '0.15.0'
+    #     args: '-- --test-threads 1'
 
     - name: Publish Coverage Report to Codecov
       uses: codecov/codecov-action@v1.0.2
