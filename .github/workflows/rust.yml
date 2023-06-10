@@ -41,8 +41,9 @@ jobs:
         cargo build --verbose
         cargo test --verbose
 
-    - name: Run rust-tarpaulin
+    - name: rust-tarpaulin
       uses: actions-rs/tarpaulin@v0.1.0
+
 
     # - name: Publish Coverage Report to Codecov
     #   uses: codecov/codecov-action@v1.0.2
