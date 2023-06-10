@@ -25,12 +25,24 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Set up Rust
-      uses: actions/setup-rust@v1
+      uses: actions-rs/toolchain@v1
       with:
-        rust-version: stable
+        toolchain: stable
 
     - name: Build and Test
       run: |
         cd ${{ matrix.project }}
         cargo build --verbose
         cargo test --verbose
+
+    - name: Generate Coverage Report
+      run: |
+        cd ${{ matrix.project }}
+        cargo install tarpaulin
+        cargo tarpaulin --out Xml
+
+    - name: Publish Coverage Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ${{ matrix.project }}/target/coverage
