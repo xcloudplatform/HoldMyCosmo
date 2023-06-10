@@ -36,7 +36,7 @@ jobs:
         cargo test --verbose
 
     - name: Generate Coverage Report
-      uses: sw3dish/cargo-tarpaulin-action@v1
+      uses: xd009642/tarpaulin-action
       with:
         crate_path: ${{ matrix.project }}
 
