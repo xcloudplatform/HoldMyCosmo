@@ -21,6 +21,11 @@ jobs:
           - hold-my-cosmo-ios-app
           - hold-my-cosmo-website
 
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -32,7 +37,6 @@ jobs:
         override: true
 
     - name: Build and Test
-      # working-directory: ${{ matrix.project }}
       run: |
         cd ${{ matrix.project }}
         cargo build --verbose
@@ -40,7 +44,6 @@ jobs:
 
     - name: Run rust-tarpaulin
       uses: actions-rs/tarpaulin@v0.1.0
-      working-directory: ${{ matrix.project }}
 
     # - name: Publish Coverage Report to Codecov
     #   uses: codecov/codecov-action@v1.0.2
