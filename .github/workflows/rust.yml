@@ -36,10 +36,9 @@ jobs:
         cargo test --verbose
 
     - name: Generate Coverage Report
-      run: |
-        cd ${{ matrix.project }}
-        cargo add tarpaulin --dev
-        cargo tarpaulin --out Xml
+      uses: sw3dish/cargo-tarpaulin-action@v1
+      with:
+        crate_path: ${{ matrix.project }}
 
     - name: Publish Coverage Report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
