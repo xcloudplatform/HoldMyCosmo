@@ -38,7 +38,6 @@ jobs:
 
     - name: Build and Test
       run: |
-        cd ${{ matrix.project }}
         cargo build --verbose
         cargo test --verbose
 
