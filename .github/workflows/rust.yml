@@ -38,7 +38,7 @@ jobs:
     - name: Generate Coverage Report
       run: |
         cd ${{ matrix.project }}
-        cargo install tarpaulin
+        cargo add tarpaulin --dev
         cargo tarpaulin --out Xml
 
     - name: Publish Coverage Report to GitHub Pages
